@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 const ell = {
     timerInput: document.querySelector('#datetime-picker'),
@@ -22,10 +23,12 @@ const options = {
       targetDate = new Date(selectedDates[0].getFullYear(), selectedDates[0].getMonth(), selectedDates[0].getDate(), selectedDates[0].getHours(), selectedDates[0].getMinutes(), selectedDates[0].getSeconds());
       
       if (currentDate >= targetDate) {
-          alert('Please choose a date in the future');
+        //   alert('Please choose a date in the future');
+          Notiflix.Notify.failure('Please choose a date in the future');
           ell.startBtn.setAttribute('disabled', '');
           targetDate = null;
       } else {
+          Notiflix.Notify.success('Well done');
           ell.startBtn.removeAttribute('disabled');
       }
   },
@@ -57,7 +60,8 @@ function startTimerCount() {
             && ell.timerHours.textContent === '00'
             && ell.timerMinutes.textContent === '00'
             && ell.timerSeconds.textContent === '00') {
-            ell.timerSeconds.textContent === '00'
+            ell.timerSeconds.textContent === '00';
+            Notiflix.Notify.info('Your time is off!!!');
             clearInterval(id);
         }
     }, 1000);
