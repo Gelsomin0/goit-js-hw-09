@@ -23,7 +23,6 @@ const options = {
       targetDate = new Date(selectedDates[0].getFullYear(), selectedDates[0].getMonth(), selectedDates[0].getDate(), selectedDates[0].getHours(), selectedDates[0].getMinutes(), selectedDates[0].getSeconds());
       
       if (currentDate >= targetDate) {
-        //   alert('Please choose a date in the future');
           Notiflix.Notify.failure('Please choose a date in the future');
           ell.startBtn.setAttribute('disabled', '');
           targetDate = null;
