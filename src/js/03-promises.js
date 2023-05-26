@@ -20,7 +20,7 @@ function submitFormFunction(e) {
     currentCount = Number(ell.amount.value);
    
     let timerId = setTimeout(function tick() {
-        if (stepCount >= currentCount) {
+        if (stepCount >= currentCount + 1) {
             stepCount = 1;
             currentCount = 0;
             delayCount = 0;
@@ -38,10 +38,10 @@ function submitFormFunction(e) {
         createPromise(stepCount, delayCount)
             .then(({position, delay}) => {
                 console.log(`✅ Fulfilled promise ${position} in ${delay} ms`);
-                Notiflix.Notify.success(`Fulfilled promise ${stepCount} in ${delayCount} ms`);
+                Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay} ms`);
             }).catch(({position, delay}) => {
                 console.log(`❌ Rejected promise ${position} in ${delay} ms`);
-                Notiflix.Notify.failure(`Rejected promise ${stepCount} in ${delayCount} ms`);
+                Notiflix.Notify.failure(`Rejected promise ${position} in ${delay} ms`);
             });
 
         timerId = setTimeout(tick, stepNumber);
